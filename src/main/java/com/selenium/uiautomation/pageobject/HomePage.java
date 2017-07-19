@@ -2,6 +2,7 @@ package com.selenium.uiautomation.pageobject;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -12,6 +13,9 @@ public class HomePage extends CommonPage{
 	// i tried to use the linkText learn more but can't be found for some reason, css is more accurate
 	@FindBy(css="a[class*='btn-about']")
 	private WebElement aboutLink;
+	
+	@FindBy(xpath="//div[contains(@class, 'news__swd news__teaser-column')]")
+	private WebElement newsLetterLink;
 
 	@FindBy(xpath="//div[contains(@class, 'owl-item') and contains(@class, 'active')]")
 	private WebElement activeCarousel;
@@ -32,6 +36,12 @@ public class HomePage extends CommonPage{
 	public AboutPage clickOnAbout() {
 		aboutLink.click();
 		return new AboutPage(this.mWebDriver);
+	}
+	
+	public NewsLetterPage clickOnNewsLetterLink() {
+		action.moveToElement(newsLetterLink).build().perform();
+		newsLetterLink.findElement(By.xpath("//img[contains(@class, 'hover-image')]")).click();
+		return new NewsLetterPage(this.mWebDriver);
 	}
 
 	public WebElement getAboutLink() {

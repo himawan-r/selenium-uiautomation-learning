@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CommonPage {
 	
@@ -40,11 +41,14 @@ public class CommonPage {
 	
 	protected WebDriver mWebDriver;
 	
+	protected WebDriverWait mWebDriverWait;
+	
 	protected Actions action;
 	
 	public CommonPage(WebDriver webDriver) {
 		mWebDriver = webDriver;
 		action = new Actions(this.mWebDriver);
+		mWebDriverWait = new WebDriverWait(mWebDriver, 10);
 	}
 	
 	public String getPageTitle() {
