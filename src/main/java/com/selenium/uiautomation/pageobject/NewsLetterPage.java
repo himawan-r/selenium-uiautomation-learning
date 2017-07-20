@@ -18,6 +18,9 @@ public class NewsLetterPage extends CommonPage{
 	@FindBy(xpath = "//span[contains(@class, 'recaptcha-checkbox')]")
 	private WebElement captchaCheckBox;
 	
+	@FindBy(xpath = "//iframe[contains(@title, 'recaptcha widget')]")
+	private WebElement captchaIframe;
+	
 	public NewsLetterPage(WebDriver webDriver) {
 		super(webDriver);
 	}
@@ -41,6 +44,11 @@ public class NewsLetterPage extends CommonPage{
 	public WebElement getCaptchaCheckBox() {
 		 mWebDriverWait.until(ExpectedConditions.visibilityOf(captchaCheckBox));
 		 return captchaCheckBox;
+	}
+
+
+	public WebElement getCaptchaIframe() {
+		return captchaIframe;
 	}
 
 }

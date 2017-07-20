@@ -1,12 +1,12 @@
 package com.selenium.uiautomation.test.news;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import java.util.UUID;
 
+import org.junit.Ignore;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import com.selenium.uiautomation.pageobject.HomePage;
@@ -29,6 +29,7 @@ public class NewsPageTest extends WebDriverTestBase{
 		assertNotNull(newLetterPage.getEmailInput());
 	}
 	
+	@Ignore("cannot test captcha submit")
 	@Test
 	public void  joinNewsLetterValidData() {
 		validateNavigateToNewsLetter();
@@ -36,6 +37,7 @@ public class NewsPageTest extends WebDriverTestBase{
 		newLetterPage.getNameInput().sendKeys("John");
 		newLetterPage.getCompanyNameInput().sendKeys("Doe .ltd");
 		newLetterPage.getEmailInput().sendKeys(randomEmail());
-		newLetterPage.getCaptchaCheckBox().click();
+		System.out.println("Iframe :" + newLetterPage.getCaptchaIframe());
+		newLetterPage.getCaptchaIframe().findElement(By.xpath("//span[contains(@class, 'recaptcha-checkbox')]")).click();
 	}
 }
