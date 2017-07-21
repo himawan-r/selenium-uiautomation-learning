@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -18,12 +19,14 @@ import org.openqa.selenium.By.ById;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import com.selenium.uiautomation.jsonobject.Lookup;
+import com.selenium.uiautomation.jsonobject.Lookups;
 import com.selenium.uiautomation.pageobject.AboutPage;
 import com.selenium.uiautomation.pageobject.HomePage;
 import com.selenium.uiautomation.test.WebDriverTestBase;
 
 public class HomePageTest extends WebDriverTestBase{
-	@Ignore
+
 	@Test
 	public void validateNavigateToAbout() {
 		HomePage homePage = PageFactory.initElements(driver, HomePage.class);
@@ -32,12 +35,16 @@ public class HomePageTest extends WebDriverTestBase{
 		assertEquals("About title is match", aboutPage.getPageTitle(), driver.getTitle());
 		assertTrue("Time Line is displayed", aboutPage.getTimeLineUnorderedList().isDisplayed());
 	}
-	@Ignore
+	
 	@Test
 	public void clickChangeLanguage() {
 		HomePage homePage = PageFactory.initElements(driver, HomePage.class);
-		WebElement bahasaLink = homePage.findLanguageByLinkText("Bahasa Indonesia");
-		WebElement englishLink = homePage.findLanguageByLinkText("English");
+		
+		//trying to make use of the gson, fetching lookup from the json file then use it as params.
+		List<Lookup> languageLookups = getLookupDataByID("Language").getLookupData();
+		WebElement bahasaLink = homePage.findLanguageByLinkText(languageLookups.get(0).getLookuptext());
+		WebElement englishLink = homePage.findLanguageByLinkText(languageLookups.get(1).getLookuptext());
+		
 		assertNotNull("Bahasa Indonesia Language Link is avaliable", bahasaLink);
 		assertNotNull("English Language Link is avaliable", englishLink);
 		
@@ -50,7 +57,7 @@ public class HomePageTest extends WebDriverTestBase{
 		assertTrue("URL contains /en", driver.getCurrentUrl().contains("/en"));
 	}
 	
-	@Ignore
+	
 	@Test
 	public void checkCarousel() {
 		HomePage homePage = PageFactory.initElements(driver, HomePage.class);

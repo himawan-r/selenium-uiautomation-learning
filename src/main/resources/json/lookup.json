@@ -1,0 +1,15 @@
+[{
+	"lookupID": "language",
+    "lookupData":[
+	  	{ "lookuptext": "Bahasa Indonesia", "lookupvalue": "1" },
+	    { "lookuptext": "English", "lookupvalue": "2" }
+	]
+},
+{
+	"lookupID": "role",
+    "lookupData":[
+	  	{ "lookuptext": ".Net Developer", "lookupvalue": "1" },
+	  	{ "lookuptext": "Consultant", "lookupvalue": "2" },
+	    { "lookuptext": "Java Developer", "lookupvalue": "3" }
+	]
+}]
